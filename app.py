@@ -189,6 +189,7 @@ def voice_command():
         'command': 'Start health assessment',
         'action': 'navigate_to_assessment'
     })
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # default to 5000 for local dev
+    app.run(host="0.0.0.0", port=port, debug=True)

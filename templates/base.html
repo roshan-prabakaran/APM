@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AutoPharm Pro - Automated Healthcare Station{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>AutoPharm Pro</h1>
+                        <p>Automated Healthcare Station</p>
+                    </div>
+                </div>
+
+                <div class="header-controls">
+                    <div class="time-display">
+                        <div id="current-time"></div>
+                        <div id="current-date"></div>
+                    </div>
+
+                    <button id="voice-btn" class="voice-btn">
+                        <i class="fas fa-microphone"></i>
+                        <span>Voice</span>
+                    </button>
+
+                    <div class="system-status">
+                        <div class="status-indicator"></div>
+                        <span>Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Voice Listening Indicator -->
+    <div id="voice-indicator" class="voice-indicator hidden">
+        <div class="voice-indicator-content">
+            <i class="fas fa-microphone pulse"></i>
+            <span>Listening...</span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

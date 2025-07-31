@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <!-- Welcome Section -->
+    <div class="welcome-card">
+        <h2>Welcome to AutoPharm Pro</h2>
+        <p>Your 24/7 automated healthcare companion. Touch a service below or use voice commands to get started.</p>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fas fa-check-circle"></i>
+            <div class="stat-info">
+                <span class="stat-label">System Status</span>
+                <span class="stat-value">Operational</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-pills"></i>
+            <div class="stat-info">
+                <span class="stat-label">Medications</span>
+                <span class="stat-value">156 Available</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-first-aid"></i>
+            <div class="stat-info">
+                <span class="stat-label">First Aid</span>
+                <span class="stat-value">Fully Stocked</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-shield-alt"></i>
+            <div class="stat-info">
+                <span class="stat-label">Security</span>
+                <span class="stat-value">HIPAA Compliant</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+        <div class="service-card" onclick="navigateTo('/assessment')">
+            <div class="service-icon red">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="service-content">
+                <h3>Health Assessment</h3>
+                <p>Complete health evaluation with symptom analysis</p>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="navigateTo('/vitals')">
+            <div class="service-icon green">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="service-content">
+                <h3>Vital Signs Monitor</h3>
+                <p>Check blood pressure, heart rate, and temperature</p>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="navigateTo('/diagnosis')">
+            <div class="service-icon purple">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="service-content">
+                <h3>AI Diagnosis</h3>
+                <p>AI-powered health analysis and recommendations</p>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+
+        <div class="service-card urgent" onclick="navigateTo('/imaging')">
+            <div class="service-icon blue">
+                <i class="fas fa-camera"></i>
+            </div>
+            <div class="service-content">
+                <h3>Injury Assessment</h3>
+                <p>Image-based injury evaluation and treatment</p>
+                <span class="urgent-badge">Urgent Care</span>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="navigateTo('/medication')">
+            <div class="service-icon orange">
+                <i class="fas fa-pills"></i>
+            </div>
+            <div class="service-content">
+                <h3>Medication Dispenser</h3>
+                <p>Get over-the-counter medications and supplies</p>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="navigateTo('/profile')">
+            <div class="service-icon gray">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="service-content">
+                <h3>My Health Profile</h3>
+                <p>View medical history and personal data</p>
+                <button class="service-btn">Start Service</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Notice -->
+    <div class="emergency-notice">
+        <div class="emergency-icon">
+            <i class="fas fa-first-aid"></i>
+        </div>
+        <div class="emergency-content">
+            <h4>Emergency Notice</h4>
+            <p>For life-threatening emergencies, call 911 immediately. This machine is for minor health issues only.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

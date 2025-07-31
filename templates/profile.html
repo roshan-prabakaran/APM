@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="page-header">
+        <button class="back-btn" onclick="navigateTo('/')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="badge">HIPAA Compliant</div>
+    </div>
+
+    <div class="profile-card">
+        <div class="card-header">
+            <h2><i class="fas fa-user"></i> Health Profile</h2>
+            <p>Your secure medical information and history</p>
+        </div>
+
+        <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="profile">Profile</button>
+            <button class="tab-btn" data-tab="history">History</button>
+            <button class="tab-btn" data-tab="privacy">Privacy</button>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile-tab" class="tab-content active">
+            <div class="profile-grid">
+                <div class="profile-section">
+                    <h3>Personal Information</h3>
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <span>{{ user.name or 'John Doe' }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Date of Birth</label>
+                        <span>{{ user.dob or 'January 15, 1990' }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Emergency Contact</label>
+                        <span>{{ user.emergency_contact or 'Jane Doe - (555) 123-4567' }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>Medical Information</h3>
+                    <div class="info-item">
+                        <label>Allergies</label>
+                        <span>{{ user.allergies or 'Penicillin, Shellfish' }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Current Medications</label>
+                        <span>{{ user.medications or 'None' }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Blood Type</label>
+                        <span>{{ user.blood_type or 'O+' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history-tab" class="tab-content">
+            <h3>Recent Medical History</h3>
+            <div class="history-list">
+                {% if user.medical_history %}
+                    {% for record in user.medical_history %}
+                    <div class="history-item">
+                        <div class="history-header">
+                            <h4>{{ record.condition }}</h4>
+                            <span class="history-date">{{ record.date }}</span>
+                        </div>
+                        <p class="history-treatment">{{ record.treatment }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="history-item">
+                        <div class="history-header">
+                            <h4>Common Cold</h4>
+                            <span class="history-date">2024-01-15</span>
+                        </div>
+                        <p class="history-treatment">Rest, fluids, OTC medication</p>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-header">
+                            <h4>Minor Cut</h4>
+                            <span class="history-date">2024-01-10</span>
+                        </div>
+                        <p class="history-treatment">Cleaned, bandaged, antibiotic ointment</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Privacy Tab -->
+        <div id="privacy-tab" class="tab-content">
+            <div class="security-notice">
+                <div class="security-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="security-info">
+                    <h3>Data Security</h3>
+                    <p>Your medical data is encrypted and stored securely in compliance with HIPAA regulations.</p>
+                </div>
+            </div>
+
+            <h3>Privacy Settings</h3>
+            <div class="privacy-settings">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Data Sharing</h4>
+                        <p>Share anonymized data for research</p>
+                    </div>
+                    <button class="setting-toggle disabled">Disabled</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Emergency Access</h4>
+                        <p>Allow emergency personnel to access basic info</p>
+                    </div>
+                    <button class="setting-toggle enabled">Enabled</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Data Retention</h4>
+                        <p>Keep medical history for 7 years</p>
+                    </div>
+                    <button class="setting-toggle active">Active</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

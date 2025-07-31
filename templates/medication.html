@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="medication-container">
+    <div class="page-header">
+        <button class="back-btn" onclick="navigateTo('/')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="badge">Automated Dispenser</div>
+    </div>
+
+    <div class="medication-layout">
+        <!-- Categories Sidebar -->
+        <div class="categories-sidebar">
+            <div class="sidebar-header">
+                <h3>Categories</h3>
+            </div>
+            <div class="categories-list">
+                <button class="category-btn active" data-category="pain-relief">
+                    <span class="category-icon">💊</span>
+                    Pain Relief
+                </button>
+                <button class="category-btn" data-category="cold-flu">
+                    <span class="category-icon">🤧</span>
+                    Cold & Flu
+                </button>
+                <button class="category-btn" data-category="first-aid">
+                    <span class="category-icon">🩹</span>
+                    First Aid
+                </button>
+                <button class="category-btn" data-category="digestive">
+                    <span class="category-icon">🫄</span>
+                    Digestive Health
+                </button>
+                <button class="category-btn" data-category="allergy">
+                    <span class="category-icon">🤧</span>
+                    Allergy Relief
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Area -->
+        <div class="products-area">
+            <div class="products-header">
+                <h3>Available Medications</h3>
+                <p id="category-description">Pain Relief</p>
+            </div>
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Cart (<span id="cart-count">0</span>)</h3>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart">Cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total: $<span id="cart-total">0.00</span></span>
+                </div>
+                <button id="dispense-btn" class="dispense-btn" disabled>Dispense Items</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dispensing Modal -->
+    <div id="dispensing-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="dispensing-animation">
+                <i class="fas fa-pills dispensing-icon pulse"></i>
+                <h3>Dispensing Items...</h3>
+                <p>Please wait while your items are prepared</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dispensing-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/medication.js') }}"></script>
+{% endblock %}

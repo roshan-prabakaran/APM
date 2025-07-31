@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="imaging-container">
+    <div class="page-header">
+        <button class="back-btn" onclick="navigateTo('/')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="badge urgent">Injury Assessment</div>
+    </div>
+
+    <div class="imaging-card">
+        <div class="card-header">
+            <h2><i class="fas fa-camera"></i> Injury Image Analysis</h2>
+            <p>Upload a clear image of your injury for AI-powered assessment</p>
+        </div>
+
+        <!-- Upload State -->
+        <div id="upload-state" class="imaging-state active">
+            <div class="upload-area" id="upload-area">
+                <i class="fas fa-camera upload-icon"></i>
+                <h3>Upload Injury Image</h3>
+                <p>Take a clear photo of the affected area</p>
+                <input type="file" id="image-input" accept="image/*" style="display: none;">
+                <button id="upload-btn" class="upload-btn">Choose Image</button>
+            </div>
+        </div>
+
+        <!-- Preview State -->
+        <div id="preview-state" class="imaging-state">
+            <div class="image-preview">
+                <img id="preview-image" src="/placeholder.svg" alt="Uploaded injury">
+            </div>
+            <div class="preview-controls">
+                <button id="upload-different" class="secondary-btn">Upload Different Image</button>
+                <button id="analyze-image" class="primary-btn">Analyze Injury</button>
+            </div>
+        </div>
+
+        <!-- Analyzing State -->
+        <div id="analyzing-state" class="imaging-state">
+            <div class="analysis-area">
+                <i class="fas fa-camera analysis-icon pulse"></i>
+                <h3>Analyzing Image</h3>
+                <p>AI is processing your injury image...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="analysis-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results State -->
+        <div id="results-state" class="imaging-state">
+            <div class="results-header">
+                <h3>Injury Analysis Results</h3>
+            </div>
+
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h4>Injury Type</h4>
+                    <div class="analysis-value" id="injury-type">Minor Abrasion</div>
+                </div>
+
+                <div class="analysis-card">
+                    <h4>Severity Level</h4>
+                    <div class="analysis-value" id="severity-level">Mild</div>
+                </div>
+            </div>
+
+            <div class="treatment-section">
+                <h4>Treatment Recommendations</h4>
+                <ul id="treatment-recommendations">
+                    <!-- Recommendations will be populated by JavaScript -->
+                </ul>
+            </div>
+
+            <div class="supplies-section">
+                <h4>Required Supplies</h4>
+                <div id="required-supplies" class="supplies-grid">
+                    <!-- Supplies will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="urgency-card">
+                <h4>Urgency Assessment</h4>
+                <p id="urgency-assessment">Low - Can be treated at home</p>
+            </div>
+
+            <div class="results-controls">
+                <button id="new-assessment" class="secondary-btn">New Assessment</button>
+                <button id="get-supplies" class="primary-btn">Get First Aid Supplies</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/imaging.js') }}"></script>
+{% endblock %}

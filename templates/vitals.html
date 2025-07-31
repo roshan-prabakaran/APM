@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="vitals-container">
+    <div class="page-header">
+        <button class="back-btn" onclick="navigateTo('/')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        <div class="badge">Non-Invasive Monitoring</div>
+    </div>
+
+    <div class="vitals-card">
+        <div class="card-header">
+            <h2><i class="fas fa-heartbeat"></i> Vital Signs Monitor</h2>
+            <p>Place your hand on the scanner and remain still during measurement</p>
+        </div>
+
+        <!-- Ready State -->
+        <div id="ready-state" class="vitals-state active">
+            <div class="scan-area">
+                <i class="fas fa-heartbeat scan-icon"></i>
+                <h3>Ready to Scan</h3>
+                <p>Click below to start vital signs measurement</p>
+            </div>
+            <button id="start-scan" class="scan-btn">Start Vital Signs Scan</button>
+        </div>
+
+        <!-- Scanning State -->
+        <div id="scanning-state" class="vitals-state">
+            <div class="scan-area scanning">
+                <i class="fas fa-heartbeat scan-icon pulse"></i>
+                <h3>Scanning in Progress</h3>
+                <p>Please remain still...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="scan-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results State -->
+        <div id="results-state" class="vitals-state">
+            <div class="results-header">
+                <h3>Vital Signs Results</h3>
+            </div>
+            <div class="vitals-grid">
+                <div class="vital-card">
+                    <div class="vital-icon red">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="vital-info">
+                        <span class="vital-label">Heart Rate</span>
+                        <span class="vital-value" id="heart-rate">-- BPM</span>
+                        <span class="vital-status normal">Normal</span>
+                    </div>
+                </div>
+
+                <div class="vital-card">
+                    <div class="vital-icon blue">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="vital-info">
+                        <span class="vital-label">Blood Pressure</span>
+                        <span class="vital-value" id="blood-pressure">-- mmHg</span>
+                        <span class="vital-status normal">Normal</span>
+                    </div>
+                </div>
+
+                <div class="vital-card">
+                    <div class="vital-icon orange">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="vital-info">
+                        <span class="vital-label">Temperature</span>
+                        <span class="vital-value" id="temperature">--°F</span>
+                        <span class="vital-status normal">Normal</span>
+                    </div>
+                </div>
+
+                <div class="vital-card">
+                    <div class="vital-icon purple">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <div class="vital-info">
+                        <span class="vital-label">Oxygen Saturation</span>
+                        <span class="vital-value" id="oxygen-saturation">--%</span>
+                        <span class="vital-status normal">Normal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-controls">
+                <button id="scan-again" class="secondary-btn">Scan Again</button>
+                <button id="proceed-analysis" class="primary-btn">Proceed to AI Analysis</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/vitals.js') }}"></script>
+{% endblock %}
